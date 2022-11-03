@@ -20,17 +20,15 @@
 </head>
 
 <body>
+    
     <div id="wrapper">
-        {% if messages %}
-            <div class="card card-register mx-auto mt-5">
-            {% for message in messages %}
-            <div  class="alert {% if message.tags %} {{ message.tags }} card-header text-center"{% endif %}>{{ message | safe }}</div>
-            {% endfor %}
-            </div>
-        {% endif %}
-
-        {% block content %}{% endblock content %}
         
+        {% block content %}{% endblock content %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message | safe }}
+            </div>
+        {% endfor %}
     </div>
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
@@ -46,6 +44,7 @@
     <!-- Custom Js -->
     <script src="{% static 'assets/js/custom-scripts.js' %}"></script>
     {% block extra_script %}{% endblock extra_script %}
+   
 
 </body>
 

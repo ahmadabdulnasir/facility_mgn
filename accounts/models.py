@@ -20,23 +20,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.contrib.auth.tokens import default_token_generator
 from simple_history.models import HistoricalRecords
-
-
-from uuid import uuid4
-from random import randint as ran
-from random import choices
-from string import ascii_letters as letters
-
-
-
-def genserial():
-    '''
-    Generate a numeric Serial numbers
-    '''
-    spam = str(uuid4().int >> 64)
-    serial = spam[:8]
-    ending = ''.join(choices(letters, k=2))
-    return f"{serial}{ending}".upper()
+from facility_mgn.utils import genserial
 
 RELIGION_CHOICE = (
     ("islam", "Islam"),
@@ -55,6 +39,7 @@ GENDER_CHOICE = (("male", "Male"), ("female", "Female"), ("others", "Others"))
 
 USER_TYPE_CHOICE = (
     ("student", "Student"),
+    ("technician", "Technician"),
     ("staff", "Staff"),
     ("admin", "Admin"), 
     ("super_admin", "Super Admin")

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 import os
 from pathlib import Path
 
@@ -28,9 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.humanize",
+    "django.forms",
     # local apps
     # "core",
     "accounts",
+    "facility",
     # "errorHandler",
     # "core.location",
     # third party
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     "debug_toolbar"
 ]
 
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,14 +130,14 @@ COUNTRIES_FIRST_REPEAT = ["Nigeria"]
 # SIMPLE_HISTORY_HISTORY_CHANGE_REASON_USE_TEXT_FIELD = True
 
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'secondary',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
 
-# MESSAGE_TAGS = {
-#     messages.DEBUG: 'secondary',
-#     messages.INFO: 'info',
-#     messages.SUCCESS: 'success',
-#     messages.WARNING: 'warning',
-#     messages.ERROR: 'error',
-# }
 
 LOG_PATH = os.path.join(PROJECT_ROOT, "logs/")
 if not os.path.isdir(LOG_PATH):

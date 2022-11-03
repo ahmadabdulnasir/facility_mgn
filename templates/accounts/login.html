@@ -86,23 +86,24 @@ body {
 
 
 {% block content %}
-<div class="sidenav" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/images/91.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="sidenav" style="background-image: url({% static 'core/repairman.webp' %}); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="login-main-text">
-    <h2>Facility Management Portal<br> Login Page</h2>
+    <h1>Facility Management Portal<br> Login Page</h1>
     <p>Login or register from here to access.</p>
     </div>
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-            <form>
+            <form  action="{% url 'accounts:login' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label>User Name</label>
-                    <input type="text" class="form-control" placeholder="User Name">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter your Email">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Enter Your Password">
                 </div>
                 <button type="submit" class="btn btn-black">Login</button>
                 <button type="submit" class="btn btn-secondary">Register</button>
